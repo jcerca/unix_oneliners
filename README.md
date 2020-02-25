@@ -2,7 +2,7 @@
 Scripts and one-liners to format data and do simple tasks required by fellow biologists. I hope this helps solving your problem
 
 ### Task 1 - splitting fasta files
-#### Problem - Say you have a fasta with 120 lines and you want to break it in "blocks" of 50 sequences (one file with sequence 1-50, another one with 51-100, and a third with 101-120).
+#### Problem - Say you have a fasta with 120 sequences and you want to break it in "blocks" of 50 sequences (one file with sequence 1-50, another one with 51-100, and a third with 101-120).
 ### [Credit](https://www.biostars.org/p/153999/)
 ```
 # input.fasta
