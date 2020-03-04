@@ -11,5 +11,28 @@ awk 'BEGIN {n_seq=0;} /^>/ {if(n_seq%50==0){file=sprintf("output.split.%d.fa",n_
 
 # How to to specify "blocks of 50"? Here: (n_seq%50==0)
 # If you want blocks of 100. It would be (n_seq%100==0)
-# The "%d" on the output file name will number the files. In the example above there will be three files: "0" (sequences 1-50), "1" (51-100), "2" (101-120)
+# The "%d" on the output file name will number the files. In the example above there will be three files: "output.split.0.fa" (sequences 1-50), "output.split..fa" (51-100), "output.split.2.fa" (101-120)
 ```
+
+
+
+### Task 2 - cleaning names
+#### Problem - Say you have a folder with >50 fastq files and you want to get all the names, but need to remove the "fastq.gz" from the end, and the "/location/from/the/beginning/". This  can be useful when you operate from different files.
+
+###
+```
+ls /path/to/my/folder #These are my files.
+/path/to/my/folder/T_waikamoi_Maui_WM_green_BioinformaticID_041.fastq.gz
+/path/to/my/folder/T_waikamoi_Maui_WM_green_BioinformaticID_042.fastq.gz
+/path/to/my/folder/T_waikamoi_Maui_WM_green_BioinformaticID_043.fastq.gz
+/path/to/my/folder/T_waikamoi_Maui_WM_green_BioinformaticID_044.fastq.gz
+/path/to/my/folder/T_waikamoi_Maui_WM_green_BioinformaticID_045.fastq.gz
+
+for i in /path/to/my/folder/*.fastq.gz; do echo ${i#/path/to/my/folder/} | sed "s/.fastq.gz//g"
+
+# Loop explained:
+# for "i" in all "*.fastq.gz" files in the folder, do:
+# the echo command will split the filename in the cardinal (#), which removes everything in the parameter "i" that starts with "/path/to/my/folder/" ### NOTE : If you wanted to remove first he "fastq.gz" in the end, you'd apply a "%" (# - beggining, % - end).
+# sed just removes the fastq.gz
+```
+
