@@ -36,3 +36,11 @@ for i in /path/to/my/folder/*.fastq.gz; do echo ${i#/path/to/my/folder/} | sed "
 # sed just removes the fastq.gz
 ```
 
+
+### Task 3 - deinterleaving a fasta
+#### Problem - Many times, fasta files come with the sequence distributed in multiple sequences. It's often better to operate with fastas that are double-lined (i.e. one line with the header (starts with ">") and the second with the sequence.
+[Source](https://www.ecseq.com/support/ngs-snippets/convert-interleaved-fasta-files-to-single-line)
+###
+```
+awk '{if(NR==1) {print $0} else {if($0 ~ /^>/) {print "\n"$0} else {printf $0}}}' interleaved.fasta > new_fasta.fasta
+```
